@@ -1,6 +1,7 @@
 // Write your code here
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
+
 import VaccinationByAge from '../VaccinationByAge'
 import VaccinationByGender from '../VaccinationByGender'
 import VaccinationCoverage from '../VaccinationCoverage'
@@ -43,13 +44,13 @@ class CowinDashboard extends Component {
   }
 
   renderLoader = () => (
-    <div data-testid="loader" className="loader-container">
+    <div data-testid="loader" className="loading-view">
       <Loader type="ThreeDots" color="#ffffff" height={80} width={80} />
     </div>
   )
 
   renderFailureView = () => (
-    <div className="failure-container">
+    <div className="failure-view">
       <img
         src="https://assets.ccbp.in/frontend/react-js/api-failure-view.png"
         alt="failure view"
@@ -67,20 +68,11 @@ class CowinDashboard extends Component {
       vaccinationByGender,
     } = vaccinationDetails
     return (
-      <div className="responsive-container">
-        <div className="chart-container">
-          <h1 className="chart-heading">Vaccination Coverage</h1>
-          <VaccinationCoverage details={barChartDetails} />
-        </div>
-        <div className="chart-container">
-          <h1 className="chart-heading">Vaccination by gender</h1>
-          <VaccinationByGender details={vaccinationByGender} />
-        </div>
-        <div className="chart-container">
-          <h1 className="chart-heading">Vaccination by age</h1>
-          <VaccinationByAge details={vaccinationByAge} />
-        </div>
-      </div>
+      <>
+        <VaccinationCoverage details={barChartDetails} />
+        <VaccinationByGender details={vaccinationByGender} />
+        <VaccinationByAge details={vaccinationByAge} />
+      </>
     )
   }
 
@@ -100,15 +92,15 @@ class CowinDashboard extends Component {
 
   render() {
     return (
-      <div className="bg-container">
-        <div className="responsive-container">
-          <div className="header-container">
+      <div className="app-container">
+        <div className="cowin-dashboard-container">
+          <div className="logo-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/cowin-logo.png"
               alt="website logo"
-              className="website-logo"
+              className="logo"
             />
-            <h1 className="website-name">Co-WIN</h1>
+            <h1 className="logo-heading">Co-WIN</h1>
           </div>
           <h1 className="heading">CoWIN Vaccination in India</h1>
           {this.renderViews()}
